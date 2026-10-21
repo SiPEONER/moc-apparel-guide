@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MOC Phase One Apparel Guide</title>
+<meta name="description" content="MOC-APPAREL-001. Phase One apparel production guide for MOC Products: items, placements, MAX sizes, methods and approval checks.">
+<meta name="theme-color" content="#000000">
+<meta name="robots" content="noindex">
+<style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<style>
+/* Layout: one bordered sheet on a strict grid, schematic like MOC-BSM-001. 2px rules divide sections, 1px hairlines divide cells. Binary only. Sticky section index under the header. */
+/* Single committed look: white ink on a black field, in every theme. */
+:root{
+  --paper:#000000;
+  --ink:#FFFFFF;
+  --font:'Proxima Nova','Helvetica Neue',Arial,sans-serif;
+  --pad:48px;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+a{color:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.sheet{max-width:1200px;margin:0 auto;border:2px solid var(--ink)}
+section{border-bottom:2px solid var(--ink);scroll-margin-top:84px}
+section:last-of-type{border-bottom:0}
+p{margin:0}
+.wrap{padding:32px var(--pad)}
+.lead{max-width:68ch;font-size:16px}
+.micro{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* header */
+header{border-bottom:2px solid var(--ink)}
+.hero{display:flex;gap:40px;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;padding:56px var(--pad)}
+.hero-text{min-width:0}
+.kicker{margin-bottom:24px}
+h1{font-weight:900;font-size:clamp(44px,8.5vw,112px);line-height:1;letter-spacing:-.035em;margin:0;text-wrap:balance}
+.hero-row{display:flex;flex-wrap:wrap;gap:12px;align-items:stretch;margin-top:32px}
+.stamp-title{display:inline-flex;align-items:center;background:var(--ink);color:var(--paper);border:2px solid var(--ink);padding:8px 16px;font-weight:900;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+.btn{display:inline-flex;align-items:center;gap:10px;border:2px solid var(--ink);padding:8px 16px;font-weight:900;font-size:12px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;background:var(--paper);color:var(--ink);cursor:pointer;font-family:var(--font)}
+.btn:hover{background:var(--ink);color:var(--paper)}
+
+/* sticky index */
+.index{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);display:grid;grid-template-columns:repeat(7,1fr);border-bottom:2px solid var(--ink)}
+.index a{display:block;padding:16px 18px;text-decoration:none;border-right:1px solid var(--ink);min-width:0}
+.index a:last-child{border-right:0}
+.index a:hover .ix-label{text-decoration:underline}
+.index a.on{background:var(--ink);color:var(--paper)}
+.ix-num{font-size:11px;font-weight:700;letter-spacing:.2em}
+.ix-label{font-weight:900;font-size:13px;text-transform:uppercase;letter-spacing:-.01em;margin-top:2px;white-space:nowrap}
+
+/* section labels */
+.sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;border-bottom:2px solid var(--ink);padding:22px var(--pad)}
+h2{font-weight:900;font-size:clamp(22px,3vw,32px);letter-spacing:-.04em;text-transform:uppercase;margin:0;text-wrap:balance}
+.docno{font-size:11px;font-weight:700;letter-spacing:.2em;flex:none}
+.sub{background:var(--ink);color:var(--paper);padding:11px var(--pad);border-bottom:1px solid var(--ink)}
+
+/* spec strip */
+.spec{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink)}
+.spec div{padding:24px var(--pad) 28px;border-right:1px solid var(--ink);min-width:0}
+.spec div:last-child{border-right:0}
+.spec .big{font-weight:900;font-size:22px;letter-spacing:-.03em;text-transform:uppercase;margin-top:8px;line-height:1.1}
+.spec .note{font-size:12px;margin-top:6px}
+
+/* tables */
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:720px;font-size:14px}
+th,td{border-bottom:1px solid var(--ink);border-right:1px solid var(--ink);padding:14px 16px;text-align:left;vertical-align:top}
+th:last-child,td:last-child{border-right:0}
+tbody tr:last-child td{border-bottom:0}
+th{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap}
+td:first-child{font-weight:700}
+td.num{font-weight:900;font-size:20px;letter-spacing:-.02em;white-space:nowrap;font-variant-numeric:tabular-nums}
+td.num small{display:block;font-weight:400;font-size:11px;letter-spacing:0}
+thead th{border-bottom:2px solid var(--ink)}
+td.nowrap{white-space:nowrap}
+
+/* label rows */
+.rows{border-top:1px solid var(--ink)}
+.row{display:grid;grid-template-columns:220px 1fr;gap:24px;padding:18px var(--pad);border-bottom:1px solid var(--ink);align-items:baseline}
+.row:last-child{border-bottom:0}
+.row .k{font-weight:900;font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+.row .v{max-width:72ch;min-width:0}
+.row .v .btn{margin-top:10px}
+code{font-family:var(--font);font-weight:700;border:1px solid var(--ink);padding:1px 6px;font-size:13px;word-break:break-all}
+
+/* mockups */
+.mocks{display:grid;grid-template-columns:repeat(4,1fr)}
+.mock{margin:0;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);display:flex;flex-direction:column;min-width:0}
+.mock:nth-child(4n){border-right:0}
+.mock:nth-last-child(-n+4){border-bottom:0}
+.zoom{display:block;width:100%;padding:12px;border:0;background:var(--paper);cursor:zoom-in}
+.zoom img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;background:#000}
+.cap{padding:14px 18px 18px;display:grid;gap:4px;border-top:1px solid var(--ink)}
+.cap .top{display:flex;justify-content:space-between;gap:8px}
+.cap .name{font-weight:900;font-size:15px;text-transform:uppercase;letter-spacing:-.01em}
+.cap .meta{font-size:12px}
+
+/* lightbox */
+dialog.lb{border:2px solid var(--ink);padding:0;background:var(--paper);color:var(--ink);width:min(92vw,860px);max-height:92vh;overflow:auto}
+dialog.lb::backdrop{background:#000}
+.lb-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 16px;border-bottom:2px solid var(--ink)}
+.lb-img{display:block;width:100%;height:auto;max-height:calc(92vh - 120px);object-fit:contain;background:#000}
+.lb-meta{padding:12px 16px;border-top:1px solid var(--ink);font-size:13px}
+
+/* stamps */
+.st{display:inline-block;border:2px solid var(--ink);padding:2px 8px;font-weight:900;font-size:11px;letter-spacing:.16em;white-space:nowrap}
+
+/* caution panel */
+.stripe{display:block;width:100%;height:16px;border-block:2px solid var(--ink)}
+.caution .body{padding:28px var(--pad)}
+
+/* flow */
+.flow{padding:28px var(--pad) 32px;border-bottom:1px solid var(--ink)}
+.flow .fig{margin-bottom:18px}
+.flow .scroll{overflow-x:auto}
+.flow svg{display:block;width:100%;min-width:620px;max-width:960px;height:auto;margin:0 auto;font-family:var(--font)}
+
+/* checklists */
+.checks{display:grid;grid-template-columns:repeat(3,1fr)}
+.checks > div{border-right:1px solid var(--ink);min-width:0}
+.checks > div:last-child{border-right:0}
+.checks h3{margin:0;padding:11px 24px;background:var(--ink);color:var(--paper);font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+.checks ul{list-style:none;margin:0;padding:20px 24px 26px;display:grid;gap:12px;font-size:14px}
+.checks label{display:grid;grid-template-columns:18px 1fr;gap:12px;align-items:start;cursor:pointer}
+.checks input{appearance:none;-webkit-appearance:none;width:18px;height:18px;margin:2px 0 0;border:2px solid var(--ink);background:var(--paper);cursor:pointer}
+.checks input:checked{background:var(--ink);box-shadow:inset 0 0 0 3px var(--paper)}
+.checks input:checked + span{text-decoration:line-through}
+.check-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:14px var(--pad);border-top:1px solid var(--ink);font-size:12px}
+
+/* questions */
+.q{display:grid;grid-template-columns:64px 220px 1fr;gap:24px;padding:18px var(--pad);border-bottom:1px solid var(--ink);align-items:baseline}
+.q:last-child{border-bottom:0}
+.q .n{font-weight:900;font-size:13px;letter-spacing:.12em;font-variant-numeric:tabular-nums}
+.q .k{font-weight:900;font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+.q .v{min-width:0;max-width:70ch}
+
+footer{border-top:2px solid var(--ink);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:18px var(--pad)}
+
+@media (max-width:1000px){
+  .index a{padding:14px 12px}
+  .ix-label{font-size:12px}
+  .mocks{grid-template-columns:repeat(2,1fr)}
+  .mock:nth-child(4n){border-right:1px solid var(--ink)}
+  .mock:nth-child(2n){border-right:0}
+  .mock:nth-last-child(-n+4){border-bottom:1px solid var(--ink)}
+  .mock:nth-last-child(-n+2){border-bottom:0}
+  .spec{grid-template-columns:repeat(2,1fr)}
+  .spec div:nth-child(2n){border-right:0}
+  .spec div:nth-child(-n+2){border-bottom:1px solid var(--ink)}
+}
+@media (max-width:760px){
+  :root{--pad:20px}
+  section{scroll-margin-top:64px}
+  .hero{padding-block:36px}
+  .index{display:flex;overflow-x:auto;scrollbar-width:none}
+  .index::-webkit-scrollbar{display:none}
+  .index a{flex:none;padding:12px 16px}
+  .docno{display:none}
+  .row{grid-template-columns:1fr;gap:4px}
+  .q{grid-template-columns:48px 1fr;gap:4px 12px}
+  .q .v{grid-column:2}
+  .checks{grid-template-columns:1fr}
+  .checks > div{border-right:0;border-bottom:1px solid var(--ink)}
+  .checks > div:last-child{border-bottom:0}
+  /* tables become stacked cards */
+  .cards table,.cards tbody,.cards tr,.cards td{display:block;width:100%;min-width:0}
+  .cards table{min-width:0}
+  .cards thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .cards tr{border-bottom:1px solid var(--ink);padding:14px var(--pad) 16px}
+  .cards tbody tr:last-child{border-bottom:0}
+  .cards td{border:0;padding:3px 0;display:grid;grid-template-columns:112px 1fr;gap:12px;white-space:normal}
+  .cards td::before{content:attr(data-label);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding-top:2px}
+  .cards td:first-child{display:block;font-weight:900;font-size:17px;text-transform:uppercase;letter-spacing:-.01em;padding-bottom:6px}
+  .cards td:first-child::before{content:none}
+  .cards td.num{font-size:18px}
+  .cards td.num small{grid-column:2;margin-top:-2px}
+}
+@media (max-width:480px){
+  .mocks{grid-template-columns:1fr}
+  .mock{border-right:0 !important;border-bottom:1px solid var(--ink) !important}
+  .mock:last-child{border-bottom:0 !important}
+  .spec{grid-template-columns:1fr}
+  .spec div{border-right:0;border-bottom:1px solid var(--ink)}
+  .spec div:last-child{border-bottom:0}
+  .cards td{grid-template-columns:96px 1fr}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+
+<div class="sheet">
+
+<header>
+  <div class="hero">
+    <div class="hero-text">
+      <p class="micro kicker">DOC NO. MOC-APPAREL-001 / PHASE ONE / REV I / ISSUED OCT 2026</p>
+      <h1>Phase One Apparel</h1>
+      <div class="hero-row">
+        <div class="stamp-title">Apparel Production Guide</div>
+        <a class="btn" href="https://moc-brand-site.vercel.app/downloads">Logo files // Download assets →</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="index" aria-label="Sections">
+  <a href="#s01"><div class="ix-num">01</div><div class="ix-label">At a glance</div></a>
+  <a href="#s02"><div class="ix-num">02</div><div class="ix-label">Items</div></a>
+  <a href="#s03"><div class="ix-num">03</div><div class="ix-label">Mockups</div></a>
+  <a href="#s04"><div class="ix-num">04</div><div class="ix-label">Rules</div></a>
+  <a href="#s05"><div class="ix-num">05</div><div class="ix-label">Production</div></a>
+  <a href="#s06"><div class="ix-num">06</div><div class="ix-label">Approval</div></a>
+  <a href="#s07"><div class="ix-num">07</div><div class="ix-label">Open items</div></a>
+</nav>
+
+<!-- 01 -->
+<section id="s01">
+  <div class="sec-head"><h2>01 / Phase One at a glance</h2><span class="docno">MOC-APPAREL-001</span></div>
+  <div class="wrap">
+    <p class="lead">Phase One is six items in one look: solid black blanks with the MOC linear mark in white. Apparel spend stays limited until 2027, so order only what is needed and hold everything else for a later phase.</p>
+  </div>
+  <div class="spec">
+    <div><p class="micro">Blank</p><p class="big">Solid black</p><p class="note">Jet, washed or garment-dyed black. No heather, gray or other colors.</p></div>
+    <div><p class="micro">Mark</p><p class="big">Linear // white</p><p class="note">Knockout, MOC-BSM-001 1B. White ink or white thread.</p></div>
+    <div><p class="micro">Not in Phase One</p><p class="big">Everything else</p><p class="note">No box logo, isolated curve device, black ink, white blanks, added copy or secondary graphics.</p></div>
+    <div><p class="micro">Governing guide</p><p class="big"><a href="https://moc-brand-site.vercel.app/">MOC-BSM-001 →</a></p><p class="note">Rev I wins where the two differ, except the vendor logo and accent color rule in section 04.</p></div>
+  </div>
+</section>
+
+<!-- 02 -->
+<section id="s02">
+  <div class="sec-head"><h2>02 / Items and placements</h2><span class="docno">MOC-APPAREL-001</span></div>
+  <div class="sub micro">Six items // one mark // one ink color // every size is a MAX, not a target</div>
+  <div class="tbl cards">
+    <table>
+      <colgroup><col style="width:14%"><col style="width:23%"><col style="width:25%"><col style="width:22%"><col style="width:16%"></colgroup>
+      <thead><tr><th>Item</th><th>Blank</th><th>Placement</th><th>Method</th><th>MAX art width</th></tr></thead>
+      <tbody>
+        <tr><td>Dad hat</td><td data-label="Blank">Black unstructured 6-panel twill cap</td><td data-label="Placement">Front, off-center on wearer's left panel</td><td data-label="Method">Embroidery, white thread</td><td class="num" data-label="MAX width">2.5 in<small>max 2.25 in tall</small></td></tr>
+        <tr><td>Rope cap</td><td data-label="Blank">Black 5-panel cap, white rope, white snap strap</td><td data-label="Placement">Front center, or off-center on wearer's left (pick one)</td><td data-label="Method">Embroidery, white thread</td><td class="num" data-label="MAX width">2.5 in<small>max 2.25 in tall</small></td></tr>
+        <tr><td>Polo</td><td data-label="Blank">Black adidas performance polo</td><td data-label="Placement">Left chest</td><td data-label="Method">DTF or screen print, white</td><td class="num" data-label="MAX width">3.5 in</td></tr>
+        <tr><td>Tee</td><td data-label="Blank">Black crew tee</td><td data-label="Placement">Center chest, high</td><td data-label="Method">DTF or screen print, white</td><td class="num" data-label="MAX width">10 in</td></tr>
+        <tr><td>Pullover hoodie</td><td data-label="Blank">Black pullover hoodie</td><td data-label="Placement">Center chest, high</td><td data-label="Method">DTF or screen print, white</td><td class="num" data-label="MAX width">10 in</td></tr>
+        <tr><td>Zip hoodie</td><td data-label="Blank">Black full-zip hoodie</td><td data-label="Placement">Left chest, plus full back</td><td data-label="Method">DTF or screen print, white</td><td class="num" data-label="MAX width">3.5 in<small>chest // 12 in back</small></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="rows" style="border-top:2px solid var(--ink)">
+    <div class="row"><p class="k">Sizing</p><p class="v">The actual width is set per item on the placement sheet and approved at proof. Center prints should usually sit well under the 10 in MAX for a high-end fashion read. Size down, never up. The linear mark is close to square (about 1.13 wide to 1 tall), so height is roughly equal to width.</p></div>
+    <div class="row"><p class="k">Minimums</p><p class="v">0.5 in for print (MOC-BSM-001, unproofed). 1.5 in proposed for embroidery, to be confirmed by sew-out.</p></div>
+  </div>
+</section>
+
+<!-- 03 -->
+<section id="s03">
+  <div class="sec-head"><h2>03 / Mockups</h2><span class="docno">MOC-APPAREL-001</span></div>
+  <div class="sub micro">Placement references // vendors match position and proportion // tap an image to enlarge</div>
+  <div class="mocks">
+    <figure class="mock"><button class="zoom" type="button" data-full="img/full/dad-hat-front.jpg" data-title="M1 // Dad hat" data-meta="Front off-center // Embroidery // MAX 2.5 in"><img src="img/dad-hat-front.jpg" alt="Black dad hat with the white linear mark embroidered off-center on the wearer's left front panel" loading="lazy"></button><figcaption class="cap"><div class="top"><span class="micro">M1</span><span class="micro">Embroidery</span></div><span class="name">Dad hat</span><span class="meta">Front off-center // MAX 2.5 in</span></figcaption></figure>
+    <figure class="mock"><button class="zoom" type="button" data-full="img/full/rope-cap-center.jpg" data-title="M2 // Rope cap // Option A" data-meta="Front center // Embroidery // MAX 2.5 in"><img src="img/rope-cap-center.jpg" alt="Black rope cap with the white linear mark embroidered at front center above the white rope" loading="lazy"></button><figcaption class="cap"><div class="top"><span class="micro">M2 // Option A</span><span class="micro">Embroidery</span></div><span class="name">Rope cap</span><span class="meta">Front center // MAX 2.5 in</span></figcaption></figure>
+    <figure class="mock"><button class="zoom" type="button" data-full="img/full/rope-cap-offset.jpg" data-title="M3 // Rope cap // Option B" data-meta="Front off-center // Embroidery // MAX 2.5 in"><img src="img/rope-cap-offset.jpg" alt="Black rope cap with the white linear mark embroidered off-center on the wearer's left" loading="lazy"></button><figcaption class="cap"><div class="top"><span class="micro">M3 // Option B</span><span class="micro">Embroidery</span></div><span class="name">Rope cap</span><span class="meta">Front off-center // MAX 2.5 in</span></figcaption></figure>
+    <figure class="mock"><button class="zoom" type="button" data-full="img/full/polo-left-chest.jpg" data-title="M4 // Polo" data-meta="Left chest // DTF or screen print // MAX 3.5 in"><img src="img/polo-left-chest.jpg" alt="Black adidas polo with the white linear mark on the left chest" loading="lazy"></button><figcaption class="cap"><div class="top"><span class="micro">M4</span><span class="micro">DTF or screen</span></div><span class="name">Polo</span><span class="meta">Left chest // MAX 3.5 in</span></figcaption></figure>
+    <figure class="mock"><button class="zoom" type="button" data-full="img/full/tee-center-chest.jpg" data-title="M5 // Tee" data-meta="Center chest // DTF or screen print // MAX 10 in"><img src="img/tee-center-chest.jpg" alt="Black tee with the white linear mark printed high on the center chest" loading="lazy"></button><figcaption class="cap"><div class="top"><span class="micro">M5</span><span class="micro">DTF or screen</span></div><span class="name">Tee</span><span class="meta">Center chest // MAX 10 in</span></figcaption></figure>
+    <figure class="mock"><button class="zoom" type="button" data-full="img/full/pullover-hoodie.jpg" data-title="M6 // Pullover hoodie" data-meta="Center chest // DTF or screen print // MAX 10 in"><img src="img/pullover-hoodie.jpg" alt="Black pullover hoodie with a large white linear mark printed high on the center chest" loading="lazy"></button><figcaption class="cap"><div class="top"><span class="micro">M6</span><span class="micro">DTF or screen</span></div><span class="name">Pullover hoodie</span><span class="meta">Center chest // MAX 10 in</span></figcaption></figure>
+    <figure class="mock"><button class="zoom" type="button" data-full="img/full/zip-hoodie-chest.jpg" data-title="M7 // Zip hoodie" data-meta="Left chest // DTF or screen print // MAX 3.5 in"><img src="img/zip-hoodie-chest.jpg" alt="Black zip hoodie with the white linear mark printed on the left chest" loading="lazy"></button><figcaption class="cap"><div class="top"><span class="micro">M7</span><span class="micro">DTF or screen</span></div><span class="name">Zip hoodie</span><span class="meta">Left chest // MAX 3.5 in</span></figcaption></figure>
+    <figure class="mock"><button class="zoom" type="button" data-full="img/full/zip-hoodie-back.jpg" data-title="M8 // Zip hoodie" data-meta="Full back // DTF or screen print // MAX 12 in"><img src="img/zip-hoodie-back.jpg" alt="Back of the black zip hoodie with a large white linear mark printed below the hood" loading="lazy"></button><figcaption class="cap"><div class="top"><span class="micro">M8</span><span class="micro">DTF or screen</span></div><span class="name">Zip hoodie</span><span class="meta">Full back // MAX 12 in</span></figcaption></figure>
+  </div>
+</section>
+
+<!-- 04 -->
+<section id="s04">
+  <div class="sec-head"><h2>04 / Rules</h2><span class="docno">MOC-APPAREL-001</span></div>
+  <div class="wrap"><p class="lead">White linear mark, solid black blank, full clearspace, no effects.</p></div>
+  <div class="sub micro">Every Phase One item</div>
+  <div class="rows" style="border-top:0">
+    <div class="row"><p class="k">Blank color</p><p class="v">Solid black, including washed and garment-dyed black. The white mark must still read with full contrast. No heather, gray or other colors.</p></div>
+    <div class="row"><p class="k">Clearspace</p><p class="v">2X the letterform stroke width on all sides. Keep it clear of seams, zippers, plackets, pockets, eyelets and the cap rope.</p></div>
+    <div class="row"><p class="k">Off-center hats</p><p class="v">The mark stays inside one front panel and never crosses the center seam.</p></div>
+    <div class="row"><p class="k">Orientation</p><p class="v">Square to the garment, never angled or tilted.</p></div>
+    <div class="row"><p class="k">No effects</p><p class="v">No distressing, puff, metallic, glitter, outline, shadow or tone-on-tone.</p></div>
+    <div class="row"><p class="k">No added copy</p><p class="v">Nothing locked to the mark. Phase One carries no other type or graphics.</p></div>
+    <div class="row"><p class="k">Official files only</p><p class="v">Never redrawn, traced or AI-generated (MOC-BSM-001 section 06).</p></div>
+  </div>
+
+  <div class="sub micro" style="border-top:1px solid var(--paper)">Trims seen in the mockups // approved for Phase One</div>
+  <div class="tbl cards">
+    <table>
+      <colgroup><col style="width:18%"><col style="width:66%"><col style="width:16%"></colgroup>
+      <thead><tr><th>Item</th><th>Trim as mocked</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Dad hat</td><td data-label="Trim">Cream woven Comfort Colors label, brass buckle on back strap</td><td data-label="Status"><span><span class="st">OK</span></span></td></tr>
+        <tr><td>Dad hat</td><td data-label="Trim">Washed black blank</td><td data-label="Status"><span><span class="st">OK</span></span></td></tr>
+        <tr><td>Rope cap</td><td data-label="Trim">White rope, white snap strap</td><td data-label="Status"><span><span class="st">OK</span></span></td></tr>
+        <tr><td>Polo</td><td data-label="Trim">White adidas logo on sleeve (meets the vendor logo rule below)</td><td data-label="Status"><span><span class="st">OK</span></span></td></tr>
+        <tr><td>Pullover hoodie</td><td data-label="Trim">Cream or natural drawcords</td><td data-label="Status"><span><span class="st">OK</span></span></td></tr>
+        <tr><td>Zip hoodie</td><td data-label="Trim">Silver zipper, metal grommets and aglets</td><td data-label="Status"><span><span class="st">OK</span></span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="caution" style="border-top:2px solid var(--ink)">
+    <div class="sub micro">Vendor logos and accent colors // all phases</div>
+    <svg class="stripe" viewBox="0 0 1200 16" preserveAspectRatio="none" aria-hidden="true">
+      <defs><pattern id="stripes" width="28" height="16" patternUnits="userSpaceOnUse" patternTransform="skewX(-30)"><rect width="14" height="16" style="fill:var(--ink)"/></pattern></defs>
+      <rect width="1200" height="16" style="fill:var(--paper)"/><rect width="1200" height="16" fill="url(#stripes)"/>
+    </svg>
+    <div class="body">
+      <p class="lead">When a blank carries a maker's logo (the adidas polo) or an accent color (the rope cap's rope), the MOC mark matches that color and the vendor logo stays out of its way.</p>
+    </div>
+    <div class="rows">
+      <div class="row"><p class="k">Match the color</p><p class="v">The MOC mark takes the color of the product's vendor logo or accent. In Phase One that is white throughout: the adidas sleeve logo and the cap rope are both white.</p></div>
+      <div class="row"><p class="k">No conflict</p><p class="v">The vendor logo sits on a different placement from the MOC mark (for example sleeve versus chest), never inside the MOC clearspace, and smaller than the MOC mark.</p></div>
+      <div class="row"><p class="k">Field stays solid</p><p class="v">The blank behind the MOC mark is still solid black or solid white.</p></div>
+      <div class="row"><p class="k">Exception to MOC-BSM-001</p><p class="v">A MOC mark in any color other than black or white breaks the binary rule in MOC-BSM-001 section 05. Each colored case needs design team approval until MOC-BSM-001 is updated to include this rule. <span class="st" style="margin-left:6px">REQUIRES APPROVAL</span></p></div>
+    </div>
+    <svg class="stripe" viewBox="0 0 1200 16" preserveAspectRatio="none" aria-hidden="true">
+      <rect width="1200" height="16" style="fill:var(--paper)"/><rect width="1200" height="16" fill="url(#stripes)"/>
+    </svg>
+  </div>
+</section>
+
+<!-- 05 -->
+<section id="s05">
+  <div class="sec-head"><h2>05 / Production</h2><span class="docno">MOC-APPAREL-001</span></div>
+  <div class="wrap"><p class="lead">Methods are locked: flat embroidery for the two hats only. DTF (direct to film) or screen print for everything else. The vendor picks DTF or screen print per order, and MOC approves the sample either way.</p></div>
+  <div class="tbl cards" style="border-top:1px solid var(--ink)">
+    <table>
+      <colgroup><col style="width:15%"><col style="width:22%"><col style="width:35%"><col style="width:28%"></colgroup>
+      <thead><tr><th>Method</th><th>Items</th><th>Spec</th><th>Watch for</th></tr></thead>
+      <tbody>
+        <tr><td>Embroidery</td><td data-label="Items">Dad hat, rope cap</td><td data-label="Spec">Flat satin or fill, white thread, one color. Vendor digitizes from MOC vector; MOC approves a physical sew-out. 3D puff not approved.</td><td data-label="Watch for">The gaps between the two curves and the counter of the O filling in</td></tr>
+        <tr><td>DTF (direct to film)</td><td data-label="Items">Polo, tee, pullover hoodie, zip hoodie</td><td data-label="Spec">Solid white only, printed from MOC vector at final size. No screens, so it suits small runs and the polyester polo.</td><td data-label="Watch for">Visible film edge or halo around the mark; stiff hand feel; edges lifting after wash</td></tr>
+        <tr><td>Screen print</td><td data-label="Items">Tee, pullover hoodie, zip hoodie (polo only if the vendor proves it on polyester)</td><td data-label="Spec">Opaque white spot ink (plastisol or water-based), underbase as needed, one screen.</td><td data-label="Watch for">White reading gray or thin; cracking after wash; dye bleeding into white on polyester</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="sub micro" style="border-top:2px solid var(--ink)">Both print methods must look identical on product // crisp, opaque, solid white // no texture, gloss or outline</div>
+  <div class="rows" style="border-top:0">
+    <div class="row"><p class="k">Official logo files</p><div class="v"><p>Download only from the MOC Brand Guide. These are the only approved source files for production.</p><a class="btn" href="https://moc-brand-site.vercel.app/downloads">Download assets →</a></div></div>
+    <div class="row"><p class="k">What MOC sends</p><p class="v">Vector art (PDF, AI or SVG) built from the official files at final size, one file per placement, single spot color named "MOC White". Plus a placement sheet with the approved width, position from a fixed point (for example, inches below the collar seam) and the blank style number.</p></div>
+    <div class="row"><p class="k">File naming</p><p class="v"><code>MOC_[ITEM]_[PLACEMENT]_v[##]</code> for example <code>MOC_TEE_CENTERCHEST_v01.pdf</code></p></div>
+    <div class="row"><p class="k">Never accepted</p><p class="v">JPG or PNG as production art, logos pulled from the web or social, or redrawn and auto-traced files.</p></div>
+  </div>
+</section>
+
+<!-- 06 -->
+<section id="s06">
+  <div class="sec-head"><h2>06 / Approval and QC</h2><span class="docno">MOC-APPAREL-001</span></div>
+  <div class="wrap"><p class="lead">Every job needs two MOC sign-offs: the digital proof and a physical sample. Production starts only after both. One sample per item and placement before any bulk order.</p></div>
+  <div class="flow" style="border-top:1px solid var(--ink)">
+    <p class="micro fig">Fig. 06 // Nothing reaches production without an approved proof and sample</p>
+    <div class="scroll">
+    <svg viewBox="0 0 720 300" role="img" aria-label="Approval flow: brief, art files, digital proof, proof check, physical sample, sample check, production run, QC on delivery">
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--ink)"/></marker>
+      </defs>
+      <g style="fill:none;stroke:var(--ink)" stroke-width="2">
+        <path d="M160 100H198" marker-end="url(#arr)"/>
+        <path d="M340 100H378" marker-end="url(#arr)"/>
+        <path d="M520 100H558" marker-end="url(#arr)"/>
+        <path d="M630 60V30H450V70" marker-end="url(#arr)"/>
+        <path d="M630 140V220" marker-end="url(#arr)"/>
+        <path d="M560 250H522" marker-end="url(#arr)"/>
+        <path d="M450 210V130" marker-end="url(#arr)"/>
+        <path d="M380 250H342" marker-end="url(#arr)"/>
+        <path d="M200 250H162" marker-end="url(#arr)"/>
+      </g>
+      <g style="fill:var(--paper);stroke:var(--ink)" stroke-width="2">
+        <rect x="20" y="72" width="140" height="56"/>
+        <rect x="200" y="72" width="140" height="56"/>
+        <rect x="380" y="72" width="140" height="56"/>
+        <polygon points="560,100 630,60 700,100 630,140"/>
+        <rect x="560" y="222" width="140" height="56"/>
+        <polygon points="380,250 450,210 520,250 450,290"/>
+        <rect x="20" y="222" width="140" height="56"/>
+      </g>
+      <rect x="200" y="222" width="140" height="56" style="fill:var(--ink);stroke:var(--ink)" stroke-width="2"/>
+      <g style="fill:var(--ink)" font-weight="900" font-size="13" text-anchor="middle" letter-spacing=".5">
+        <text x="90" y="98">BRIEF</text>
+        <text x="270" y="98">ART FILES</text>
+        <text x="450" y="98">DIGITAL PROOF</text>
+        <text x="630" y="104" font-size="11.5">PROOF PASSES?</text>
+        <text x="630" y="248">PHYSICAL SAMPLE</text>
+        <text x="450" y="254" font-size="11.5">SAMPLE PASSES?</text>
+        <text x="90" y="248">QC ON DELIVERY</text>
+      </g>
+      <g style="fill:var(--ink)" font-weight="400" font-size="11" text-anchor="middle" letter-spacing="2">
+        <text x="90" y="116">MOC</text>
+        <text x="270" y="116">MOC</text>
+        <text x="450" y="116">VENDOR</text>
+        <text x="630" y="266">VENDOR</text>
+        <text x="90" y="266">MOC</text>
+      </g>
+      <text x="270" y="248" text-anchor="middle" font-weight="900" font-size="13" letter-spacing=".5" style="fill:var(--paper)">PRODUCTION RUN</text>
+      <text x="270" y="266" text-anchor="middle" font-size="11" letter-spacing="2" style="fill:var(--paper)">VENDOR</text>
+      <g style="fill:var(--ink)" font-weight="700" font-size="10" letter-spacing="1.6">
+        <text x="540" y="22" text-anchor="middle">NO // VENDOR REVISES</text>
+        <text x="640" y="184">YES</text>
+        <text x="460" y="174">NO // BACK TO PROOF</text>
+        <text x="361" y="240" text-anchor="middle">YES</text>
+      </g>
+    </svg>
+    </div>
+  </div>
+  <div class="checks">
+    <div>
+      <h3>Proof check // digital</h3>
+      <ul>
+        <li><label><input type="checkbox" id="ck-p1"><span>Official white linear mark, unaltered</span></label></li>
+        <li><label><input type="checkbox" id="ck-p2"><span>Black blank (jet, washed or garment-dyed) matching the style number on the placement sheet</span></label></li>
+        <li><label><input type="checkbox" id="ck-p3"><span>Width matches the placement sheet and is at or under MAX</span></label></li>
+        <li><label><input type="checkbox" id="ck-p4"><span>Full clearspace, clear of seams, zippers, plackets, eyelets and cap rope</span></label></li>
+        <li><label><input type="checkbox" id="ck-p5"><span>Trims match the decisions in this guide</span></label></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Sample check // physical</h3>
+      <ul>
+        <li><label><input type="checkbox" id="ck-s1"><span>White reads solid white, not gray or thin</span></label></li>
+        <li><label><input type="checkbox" id="ck-s2"><span>Gaps between the two curves and the counter of the O are open</span></label></li>
+        <li><label><input type="checkbox" id="ck-s3"><span>Edges are crisp; embroidery lies flat with no puckering</span></label></li>
+        <li><label><input type="checkbox" id="ck-s4"><span>Survives one wash without cracking, lifting or fraying</span></label></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Delivery check // production</h3>
+      <ul>
+        <li><label><input type="checkbox" id="ck-d1"><span>Spot-check at least 1 in 50 units against the approved sample (proposed rate)</span></label></li>
+        <li><label><input type="checkbox" id="ck-d2"><span>Placement consistent across sizes</span></label></li>
+        <li><label><input type="checkbox" id="ck-d3"><span>Rejects logged with photos and sent to the vendor before payment</span></label></li>
+      </ul>
+    </div>
+  </div>
+  <div class="check-bar">
+    <p>Ticks save in this browser only. Nobody else sees them.</p>
+    <button class="btn" type="button" id="ck-clear">Clear all ticks</button>
+  </div>
+</section>
+
+<!-- 07 -->
+<section id="s07">
+  <div class="sec-head"><h2>07 / Open items</h2><span class="docno">MOC-APPAREL-001</span></div>
+  <div class="sub micro">Decisions needed before the first Phase One order</div>
+  <div>
+    <div class="q"><span class="n">Q01</span><span class="k">Quantities and budget</span><p class="v">Order count per item and size, and the Phase One spend cap.</p></div>
+    <div class="q"><span class="n">Q02</span><span class="k">Rope cap placement</span><p class="v">Pick front center (M2, option A) or off-center (M3, option B) so only one is produced.</p></div>
+    <div class="q"><span class="n">Q03</span><span class="k">Colored MOC marks</span><p class="v">Add the color-matching rule to MOC-BSM-001, and decide which color wins when a product's vendor logo and accent color differ.</p></div>
+    <div class="q"><span class="n">Q04</span><span class="k">Thread and ink standard</span><p class="v">Name one white thread color number and one white ink spec every vendor matches.</p></div>
+    <div class="q"><span class="n">Q05</span><span class="k">Embroidery minimum</span><p class="v">Confirm 1.5 in with a sew-out.</p></div>
+    <div class="q"><span class="n">Q06</span><span class="k">Approver</span><p class="v">Name who signs off proofs and samples, plus a backup.</p></div>
+  </div>
+</section>
+
+<!-- revision log -->
+<section id="rev">
+  <div class="sec-head"><h2>Revision log</h2><span class="docno">MOC-APPAREL-001</span></div>
+  <div class="tbl cards">
+    <table>
+      <colgroup><col style="width:12%"><col style="width:18%"><col style="width:70%"></colgroup>
+      <thead><tr><th>Rev</th><th>Date</th><th>Changes</th></tr></thead>
+      <tbody>
+        <tr><td>Rev I</td><td data-label="Date" class="nowrap">Oct 21, 2026</td><td data-label="Changes">First release. Six Phase One items with the white linear mark on black. MAX art sizes, embroidery for hats, DTF or screen print for apparel. Vendor logo and accent color rule added. Washed and garment-dyed black approved. All mocked trims approved.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <p class="micro" style="font-weight:400">MOC Products // Apparel Production Guide // Phase One // For internal and vendor distribution</p>
+  <p class="micro">Page 01 / 01</p>
+</footer>
+
+</div>
+
+<dialog class="lb" id="lb" aria-labelledby="lb-title">
+  <div class="lb-bar"><p class="micro" id="lb-title"></p><button class="btn" type="button" id="lb-close">Close ×</button></div>
+  <img class="lb-img" id="lb-img" alt="">
+  <p class="lb-meta" id="lb-meta"></p>
+</dialog>
+
+<script>
+(function(){
+  /* enlarge mockups */
+  var lb=document.getElementById('lb'),img=document.getElementById('lb-img'),t=document.getElementById('lb-title'),m=document.getElementById('lb-meta');
+  document.querySelectorAll('.zoom').forEach(function(b){
+    b.addEventListener('click',function(){
+      var small=b.querySelector('img');
+      img.src=b.dataset.full; img.alt=small.alt; t.textContent=b.dataset.title; m.textContent=b.dataset.meta;
+      if(lb.showModal){lb.showModal();}else{lb.setAttribute('open','');}
+    });
+  });
+  function close(){ if(lb.close){lb.close();}else{lb.removeAttribute('open');} }
+  document.getElementById('lb-close').addEventListener('click',close);
+  lb.addEventListener('click',function(e){ if(e.target===lb) close(); });
+
+  /* checklists: per-browser only */
+  var KEY='moc-apparel-001-checks', boxes=document.querySelectorAll('.checks input[type=checkbox]'), saved={};
+  try{ saved=JSON.parse(localStorage.getItem(KEY)||'{}')||{}; }catch(e){ saved={}; }
+  boxes.forEach(function(c){
+    if(saved[c.id]) c.checked=true;
+    c.addEventListener('change',function(){
+      saved[c.id]=c.checked;
+      try{ localStorage.setItem(KEY,JSON.stringify(saved)); }catch(e){}
+    });
+  });
+  document.getElementById('ck-clear').addEventListener('click',function(){
+    boxes.forEach(function(c){ c.checked=false; }); saved={};
+    try{ localStorage.removeItem(KEY); }catch(e){}
+  });
+
+  /* highlight the section in view */
+  var links={}; document.querySelectorAll('.index a').forEach(function(a){ links[a.getAttribute('href').slice(1)]=a; });
+  var nav=document.querySelector('.index');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(!en.isIntersecting) return;
+        Object.keys(links).forEach(function(k){ links[k].classList.remove('on'); links[k].removeAttribute('aria-current'); });
+        var a=links[en.target.id]; if(!a) return;
+        a.classList.add('on'); a.setAttribute('aria-current','true');
+        if(nav.scrollWidth>nav.clientWidth){ nav.scrollTo({left:a.offsetLeft-16,behavior:'smooth'}); }
+      });
+    },{rootMargin:'-35% 0px -60% 0px'});
+    document.querySelectorAll('section[id^="s0"]').forEach(function(s){ io.observe(s); });
+  }
+})();
+</script>
+
+</body>
+</html>
