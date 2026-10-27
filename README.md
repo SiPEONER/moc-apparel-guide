@@ -5,6 +5,7 @@ Static site for the MOC Phase One apparel spec: items, placements, MAX art sizes
 - `index.html`: the guide (single page, no build step)
 - `img/`: mockup images; `img/full/` holds the larger versions used by the enlarge view
 - `fonts/`: Montserrat (Regular, Bold, Black; SIL Open Font License), the MOC-BSM-001 section 03 face for vendor-facing documents
+- `icon.svg`, `apple-touch-icon.png`: browser and home-screen icons, the same as the brand site and signature tool
 - `vercel.json`: Vercel settings
 
 Deploys to Vercel on every push to `main`.
